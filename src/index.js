@@ -4,6 +4,8 @@ import "./style2.scss";
 import Inputmask from "inputmask";
 import SimpleBar from "simplebar";
 import 'simplebar/dist/simplebar.css';
+import ResizeObserver from 'resize-observer-polyfill';
+window.ResizeObserver = ResizeObserver;
 
 function component() {
   const element = document.createElement("div");
