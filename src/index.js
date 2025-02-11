@@ -4,6 +4,7 @@ import "./style2.scss";
 import Inputmask from "inputmask";
 import SimpleBar from "simplebar";
 import 'simplebar/dist/simplebar.css';
+// window.SimpleBar = require('../plugins/simplebar/simplebar.min.js');
 import ResizeObserver from 'resize-observer-polyfill';
 window.ResizeObserver = ResizeObserver;
 
@@ -11,7 +12,7 @@ function component() {
   const element = document.createElement("div");
   const btn = document.createElement('button');
 
-  element.innerHTML = _.join(["Hello3", "webpack"], " ");
+  element.innerHTML = _.join(["Hello4", "webpack"], " ");
   element.classList.add("hello");
 
   return element;
@@ -29,4 +30,8 @@ const imask = Inputmask({
     rightAlign: false,
     numericInput: true,
   });
-  imask.mask(document.querySelector('.inp'));
+imask.mask(document.querySelector('.inp'));
+
+
+const myfunc = (a, b) => a+ b;
+console.log(myfunc(2, 5));

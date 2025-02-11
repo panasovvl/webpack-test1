@@ -11,3 +11,18 @@
     background: url('./img/sub/phones.png');
     font-family: 'MyFont';
 }
+input::placeholder {
+    background: green;
+}
+@media screen and (max-width: 768px) {
+    p {
+        width: 300px;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+    input {
+        height: 300px;
+    }
+    
+}

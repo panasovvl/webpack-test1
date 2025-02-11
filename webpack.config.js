@@ -1,27 +1,54 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const { name } = require("file-loader");
 // const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+const PATHS = {
+  src: path.resolve(__dirname, "src"),
+  dist: path.resolve(__dirname, "dist"),
+};
 
 module.exports = {
   mode: "development",
   //   mode: "production",
   //   devtool: "eval-source-map",
   devtool: "source-map",
-  entry: { app: "./src/index.js" },
+  entry: {
+    app: `${PATHS.src}/index.js`,
+  },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: PATHS.dist,
     clean: true,
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendors",
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true, //Отделяет отдельно CSS
+        },
+      },
+    },
+  },
   devServer: {
+    port: 8081,
+    watchFiles: [`${PATHS.src}//**/*.html`],
     client: {
       overlay: true,
+    },
+    open: {
+      app: {
+        name: "chrome",
+      },
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: `${PATHS.src}/index.html`,
     }),
     new MiniCssExtractPlugin(),
     // new CopyWebpackPlugin({
@@ -34,11 +61,16 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
         test: /\.(s(a|c)ss)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ttf)$/i,
@@ -46,8 +78,7 @@ module.exports = {
         generator: {
           // keep original filenames and copy images to `dist/img/`
           // filename: "[name][ext]",
-          filename: (d) => d.filename.replace(/^src\//, "./"),
-          // emit: false,
+          filename: (d) => d.filename.replace(/^src[\\/]/, "./"),
         },
       },
       //   {
@@ -61,6 +92,16 @@ module.exports = {
       //       },
       //     ],
       //   },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
     ],
   },
 };
