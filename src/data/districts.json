@@ -1,0 +1,7 @@
+[
+    { "value": "MSK-CENTER", "label": "Центральный"},
+    { "value": "MSK-WEST", "label": "Западный"},
+    { "value": "MSK-EAST", "label": "Восточный"},
+    { "value": "MSK-SOUTH", "label": "Южный"},
+    { "value": "MSK-NORTH", "label": "Северный"}
+]

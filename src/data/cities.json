@@ -1,0 +1,9 @@
+[
+    { "value": "MSK", "label": "Москва"},
+    { "value": "KRA", "label": "Краснодар"},
+    { "value": "RND", "label": "Ростов"},
+    { "value": "SPB", "label": "Санкт Петербург"},
+    { "value": "KAL", "label": "Калининград"},
+    { "value": "SOC", "label": "Сочи"},
+    { "value": "TUM", "label": "Тюмень"}
+]

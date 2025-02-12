@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 // const { name } = require("file-loader");
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const PATHS = {
   src: path.resolve(__dirname, "src"),
@@ -16,7 +16,7 @@ module.exports = {
   //   devtool: "eval-source-map",
   devtool: "source-map",
   entry: {
-    app: `${PATHS.src}/index.js`,
+    app: `${PATHS.src}/js/index.js`,
   },
   output: {
     filename: "[name].bundle.js",
@@ -67,11 +67,11 @@ module.exports = {
       template: `${PATHS.src}/index.html`,
     }),
     new MiniCssExtractPlugin(),
-    // new CopyWebpackPlugin({
-    //     patterns: [
-    //       { from: 'src/img', to: 'dist/img' },
-    //     ],
-    //   }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: `${PATHS.src}/data`, to: `${PATHS.dist}/data` },
+      ],
+    }),
   ],
   resolve: {
     alias: {
