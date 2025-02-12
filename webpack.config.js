@@ -107,7 +107,7 @@ module.exports = {
         generator: {
           // keep original filenames and copy images to `dist/img/`
           // filename: "[name][ext]",
-          filename: (d) => d.filename.replace(/^src[\\/]/, "./"),
+          filename: (d) => d.filename.replace(/^src[\\/]/, "./").replaceAll("\\", "/"),
         },
       },
       //   {
