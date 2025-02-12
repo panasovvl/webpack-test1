@@ -35,6 +35,7 @@ module.exports = {
       },
     },
     minimizer: [
+      "...", //Чтобы подключались стандартные минимизаторы
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
