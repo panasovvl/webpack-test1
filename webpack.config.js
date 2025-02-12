@@ -97,6 +97,10 @@ module.exports = {
         ],
       },
       {
+        test: /\.html$/i,
+        use: "html-loader",
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif|ttf)$/i,
         type: "asset/resource",
         generator: {
