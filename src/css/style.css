@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'MyFont';
-    src: url('./font/GoogleSans-Regular.ttf');
+    src: url('font/GoogleSans-Regular.ttf');
     font-weight: 600;
     font-style: normal;
 
@@ -8,7 +8,8 @@
 
 .hello {
     color: red;
-    background: url('./img/sub/phones.png');
+    /* background: url('~/img/sub/phones.png'); */
+    background: url('img/serv-11.png');
     font-family: 'MyFont';
 }
 input::placeholder {

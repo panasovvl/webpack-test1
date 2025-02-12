@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 // const { name } = require("file-loader");
 // const CopyWebpackPlugin = require("copy-webpack-plugin");
 
@@ -33,6 +34,21 @@ module.exports = {
         },
       },
     },
+    minimizer: [
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              "imagemin-gifsicle",
+              "imagemin-mozjpeg",
+              "imagemin-pngquant",
+              "imagemin-svgo",
+            ],
+          },
+        },
+      }),
+    ],
   },
   devServer: {
     port: 8081,
@@ -57,6 +73,14 @@ module.exports = {
     //     ],
     //   }),
   ],
+  resolve: {
+    alias: {
+      css: `${PATHS.src}/css`,
+      img: `${PATHS.src}/img`,
+      font: `${PATHS.src}/font`,
+      js: `${PATHS.src}/js`,
+    },
+  },
   module: {
     rules: [
       {
@@ -81,6 +105,24 @@ module.exports = {
           filename: (d) => d.filename.replace(/^src[\\/]/, "./"),
         },
       },
+      //   {
+      //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      //     loader: ImageMinimizerPlugin.loader,
+      //     enforce: "pre",
+      //     options: {
+      //       minimizer: {
+      //         implementation: ImageMinimizerPlugin.imageminMinify,
+      //         options: {
+      //           plugins: [
+      //             "imagemin-gifsicle",
+      //             "imagemin-mozjpeg",
+      //             "imagemin-pngquant",
+      //             "imagemin-svgo",
+      //           ],
+      //         },
+      //       },
+      //     },
+      //   },
       //   {
       //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
       //     use: [

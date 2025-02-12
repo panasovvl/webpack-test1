@@ -1,6 +1,6 @@
 import _ from "lodash";
-import "./style.css";
-import "./style2.scss";
+import "css/style.css";
+import "css/style2.scss";
 import Inputmask from "inputmask";
 import SimpleBar from "simplebar";
 import 'simplebar/dist/simplebar.css';
