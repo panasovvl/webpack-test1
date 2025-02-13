@@ -62,6 +62,9 @@ module.exports = {
         name: "chrome",
       },
     },
+    devMiddleware: {
+      writeToDisk: true,
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
