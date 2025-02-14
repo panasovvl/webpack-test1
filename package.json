@@ -38,7 +38,8 @@
     "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.0",
+    "webpack-html-include-loader": "^0.1.5"
   },
   "dependencies": {
     "inputmask": "^5.0.9",

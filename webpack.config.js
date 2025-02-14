@@ -68,13 +68,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: `${PATHS.src}/index.html`,
+      template: `html-loader!webpack-html-include-loader!${PATHS.src}/index.html`,
     }),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: `${PATHS.src}/data`, to: `${PATHS.dist}/data` },
-      ],
+      patterns: [{ from: `${PATHS.src}/data`, to: `${PATHS.dist}/data` }],
     }),
   ],
   resolve: {
@@ -100,17 +98,18 @@ module.exports = {
           "sass-loader",
         ],
       },
-      {
-        test: /\.html$/i,
-        use: "html-loader",
-      },
+      // {
+      //   test: /\.html$/i,
+      //   use: "html-loader",
+      // },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ttf)$/i,
         type: "asset/resource",
         generator: {
           // keep original filenames and copy images to `dist/img/`
           // filename: "[name][ext]",
-          filename: (d) => d.filename.replace(/^src[\\/]/, "./").replaceAll("\\", "/"),
+          filename: (d) =>
+            d.filename.replace(/^src[\\/]/, "./").replaceAll("\\", "/"),
         },
       },
       //   {
